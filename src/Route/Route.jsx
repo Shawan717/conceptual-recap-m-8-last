@@ -4,18 +4,19 @@ import Home from "../Pages/Home/Home";
 import Favorites from "../Pages/Favorites/Favorites";
 import Login from "../Pages/Login/Login";
 import PhonesCard from "../components/Phones/Phone/PhonesCard";
+import ErrorElement from "./ErrorElement/ErrorElement";
 
 
 const myCreateRoute=createBrowserRouter([
     {
         path:"/",
         element:<MainLayout></MainLayout>,
-
+        errorElement:<ErrorElement></ErrorElement>,
         children:[
             {
                 path:"/",
                 element:<Home></Home>,
-                loader:()=>fetch('phones.json')
+                loader:()=>fetch('/phones.json')
             },
             {
                 path:"/favorites",
@@ -28,6 +29,7 @@ const myCreateRoute=createBrowserRouter([
             {
                 path:"/phonesCard/:id",
                 element: <PhonesCard></PhonesCard>,
+                loader:()=>fetch('/phones.json')
             }
 
         ]
